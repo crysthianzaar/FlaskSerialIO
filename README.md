@@ -1,6 +1,6 @@
-# FlaskSerialSensor
+# FlaskSerialIO
 
-FlaskSerialSensor is a simple example application that combines Flask for web rendering and Socket.IO for real-time communication. The application simulates a luminosity sensor reading from a serial port and updates the web page dynamically based on the received data.
+FlaskSerialIO is a simple lib that combines Flask for web rendering and Socket.IO for real-time communication. The lib read a sensor from a serial port and updates the web page dynamically based on the received data.
 
 ## Installation
 
