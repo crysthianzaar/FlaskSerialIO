@@ -2,55 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arduino Data</title>
-
-    <style>
-        body {
-            transition: background-color 0.5s;
-        }
-    </style>
+    <title>WebSocket Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
 </head>
 <body>
-    <h1>Valor do LDR em Tempo Real:</h1>
-    <p id="data"></p>
+    <h1>WebSocket Example</h1>
+    <div id="data-container"></div>
 
     <script>
-        function updateData() {
-            fetch('/update_data')
-                .then(response => response.json())
-                .then(data => {
-                    // Extrai o valor numérico da string
-                    var value = parseFloat(data.value.match(/\d+/));
-        
-                    // Verifica se o valor é um número válido
-                    if (!isNaN(value)) {
-                        document.getElementById('data').innerHTML = value;
-        
-                        // Ajusta a cor de fundo com base no valor
-                        var backgroundColor = calculateBackgroundColor(value);
-                        document.body.style.backgroundColor = backgroundColor;
-                    } else {
-                        document.getElementById('data').innerHTML = 'Valor inválido';
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro na solicitação:', error);
-                });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Conectar ao servidor WebSocket
+            const socket = io({ reconnection: true });
+
+            // Manipular o evento 'update_data'
+            socket.on('update_data', function(data) {
+                updateData(data.value);
+            });
+
+            // Manter a conexão Socket.IO aberta
+            setInterval(function() {
+                socket.emit('update_request');
+            }, 1000);  // Envie um pedido de atualização a cada 100 milissegundos
+        });
+
+        // Função para atualizar dinamicamente o conteúdo
+        function updateData(value) {
+            const dataContainer = document.getElementById('data-container');
+            if (dataContainer) {
+                dataContainer.innerHTML = value;
+            }
         }
-        
-
-        function calculateBackgroundColor(value) {
-            // Mapeia o valor para a escala de 100 a 1200 para a escala de 0 a 255 (cores RGB)
-            var scaledValue = Math.min(Math.max(value, 200), 1100);
-            var colorValue = Math.round((scaledValue - 100) / (1200 - 100) * 255);
-
-            // Retorna a cor no formato RGB
-            return `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
-        }
-
-        // Atualiza os dados a cada segundo (1000 ms)
-        setInterval(updateData, 1000);
     </script>
 </body>
 </html>
