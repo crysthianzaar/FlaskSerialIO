@@ -11,12 +11,12 @@ FlaskSerialSensor is a simple example application that combines Flask for web re
    cd FlaskSerialSensor
 
 2. Install the required dependencies:
-
-pip install -r requirements.txt
+    ```bash
+    pip install -r requirements.txt
 
 3. Run the Flask application:
-
-python flask_app.py
+    ```bash
+    python flask_app.py
 
 This will start the Flask application on http://localhost:5000.
 
