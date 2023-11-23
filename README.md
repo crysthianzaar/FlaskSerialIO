@@ -7,8 +7,8 @@ FlaskSerialIO is a simple lib that combines Flask for web rendering and Socket.I
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/seu-usuario/FlaskSerialSensor.git
-   cd FlaskSerialSensor
+   git clone https://github.com/seu-usuario/FlaskSerialIO.git
+   cd FlaskSerialIO
 
 2. Install the required dependencies:
     ```bash
