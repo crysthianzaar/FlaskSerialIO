@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Data</title>
+
+    <style>
+        body {
+            transition: background-color 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Valor do LDR em Tempo Real:</h1>
+    <p id="data"></p>
+
+    <script>
+        function updateData() {
+            fetch('/update_data')
+                .then(response => response.json())
+                .then(data => {
+                    // Extrai o valor numérico da string
+                    var value = parseFloat(data.value.match(/\d+/));
+        
+                    // Verifica se o valor é um número válido
+                    if (!isNaN(value)) {
+                        document.getElementById('data').innerHTML = value;
+        
+                        // Ajusta a cor de fundo com base no valor
+                        var backgroundColor = calculateBackgroundColor(value);
+                        document.body.style.backgroundColor = backgroundColor;
+                    } else {
+                        document.getElementById('data').innerHTML = 'Valor inválido';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na solicitação:', error);
+                });
+        }
+        
+
+        function calculateBackgroundColor(value) {
+            // Mapeia o valor para a escala de 100 a 1200 para a escala de 0 a 255 (cores RGB)
+            var scaledValue = Math.min(Math.max(value, 200), 1100);
+            var colorValue = Math.round((scaledValue - 100) / (1200 - 100) * 255);
+
+            // Retorna a cor no formato RGB
+            return `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+        }
+
+        // Atualiza os dados a cada segundo (1000 ms)
+        setInterval(updateData, 1000);
+    </script>
+</body>
+</html>
