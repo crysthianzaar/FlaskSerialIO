@@ -20,13 +20,13 @@ FlaskSerialSensor is a simple example application that combines Flask for web re
 
 This will start the Flask application on http://localhost:5000.
 
-In a separate terminal, run the Socket.IO server:
-
-python socketio_server.py
+4. In a separate terminal, run the Socket.IO server:
+    ```bash
+    python socketio_server.py
 
 This will start the Socket.IO server on http://localhost:5001.
 
-Open your browser and navigate to http://localhost:5000 to see the Flask application.
+5. Open your browser and navigate to http://localhost:5000 to see the Flask application.
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests.
