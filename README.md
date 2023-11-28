@@ -1,3 +1,14 @@
+<div align="center">
+
+![FlaskSerialIO](https://i.ibb.co/nMMmj2m/image.png)
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)](https://pypi.org/project/FlaskSerialIO/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/FlaskSerialIO)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/FlaskSerialIO)
+![PyPI](https://img.shields.io/pypi/v/FlaskSerialIO)
+
+</div>
 # FlaskSerialIO Documentation
 
 **FlaskSerialIO** is a Python library that simplifies the communication between a Flask web application and a serial port through Socket.IO. This documentation provides an overview of the library and demonstrates its usage with examples.
