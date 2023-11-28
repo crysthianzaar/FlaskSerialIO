@@ -10,24 +10,18 @@
 <body>
     <h1>WebSocket Example</h1>
     <div id="data-container"></div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Conectar ao servidor WebSocket
             const socket = io({ reconnection: true });
-
-            // Manipular o evento 'update_data'
             socket.on('update_data', function(data) {
                 updateData(data.value);
             });
 
-            // Manter a conexão Socket.IO aberta
             setInterval(function() {
                 socket.emit('update_request');
-            }, 1000);  // Envie um pedido de atualização a cada 100 milissegundos
+            }, 1000);
         });
 
-        // Função para atualizar dinamicamente o conteúdo
         function updateData(value) {
             const dataContainer = document.getElementById('data-container');
             if (dataContainer) {
